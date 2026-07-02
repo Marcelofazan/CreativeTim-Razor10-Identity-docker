@@ -121,5 +121,6 @@ DROP DATABASE "creativeTim";
 | **AspNetUserLogins** |  Usado para logins externos (como Google, Facebook, Microsoft). |
 | **AspNetUserTokens** |  Armazena tokens de autenticação do usuário. |
 
-**Observação:** Para Utilizar o **Postgres** direto no **Docker** alterar nos **appsettings** após configurado o banco de dados, deve se trocar **Server=localhost** por **Host=db** , os Postgres aceita no dialeto tanto a palavra Server como Host para apontar o servidor. 
+**Observação:** Para Utilizar o **Postgres** direto no **Docker** alterar nos **appsettings**.
+- Após configurado o banco de dados, deve se trocar **Server=localhost** por **Host=db** nos **appsettings** , os Postgres aceita o dialeto tanto a palavra **Server** como a palavra **Host** para distinguir o Servidor. 
 
