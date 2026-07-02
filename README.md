@@ -118,7 +118,7 @@ DROP DATABASE "creativeTim";
 - Após configurado o banco de dados, deve se trocar **Server=localhost** por **Host=db** nos **appsettings** , os Postgres aceita o dialeto tanto a palavra **Server** como a palavra **Host** para distinguir o Servidor. 
 
 
-#### 💡 Tabelas Identity ASPNET da Microsoft 
+#### 💡 Relação tabelas Identity ASPNET da Microsoft 
 | Tecnologia | Descrição |
 |-----------|-----------|
 | **AspNetRoles** |  Armazena os papéis/perfis de acesso (ex: Admin, Usuário). |
