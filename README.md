@@ -81,8 +81,8 @@ docker exec -it argon-dashboard-asp-net-master-db-1 psql -U postgres
 \c creativeTim
 \dt
 ```
--Caso houver falhas de Erro nos comandos Digite **;** e aperte **Enter**.
--Se você já digitou texto errado na linha anterior, use o atalho **Ctrl + C** para cancelar o comando atual e limpar a linha. Digite o comando completo novamente em uma única linha e finalize com **;**
+- Caso houver falhas de Erro nos comandos Digite ** ; ** e aperte **Enter**.
+- Se você já digitou texto errado na linha anterior, use o atalho **Ctrl + C** para cancelar o comando atual e limpar a linha. Digite o comando completo novamente em uma única linha e finalize com ** ; **
 
 - Os Select(s) das tabelas do **Identity Microsoft** podem ser usados no terminal 
 ```bash 
@@ -104,14 +104,13 @@ docker inspect --format='{{json .State.Health}}' argon-dashboard-asp-net-master-
 docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' argon-dashboard-asp-net-master-db-1
 ```
 - Caso precise Recriar o banco de dados
-- ```bash  
+```bash  
 SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = 'creativeTim'
 ;
 DROP DATABASE "creativeTim";
 ```
 
 #### Identity Microsoft ASPNET  
-
 | Tecnologia | Descrição |
 |-----------|-----------|
 | **AspNetRoles** |  Armazena os papéis/perfis de acesso (ex: Admin, Usuário). |
