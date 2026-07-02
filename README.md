@@ -75,7 +75,7 @@ A aplicação ficará disponivel em **https://localhost:44308/**
 
 Para primeiro acesso usuario: **admin@argon.com** senha: **Secret1+**
 
-#### ⚙️ Configuração - Postgres Docker 
+#### 🔍 Docker Postgres 
 Para verificar se a database **creativeTim** está no docker acesse o banco com os commandos, para verificar as tabelas. 
 
 VSCode Terminal [4]
@@ -114,7 +114,11 @@ SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = 'creative
 DROP DATABASE "creativeTim";
 ```
 
-#### Identity Microsoft ASPNET  
+**Observação:** Para Utilizar o **Postgres** direto no **Docker** alterar nos **appsettings**.
+- Após configurado o banco de dados, deve se trocar **Server=localhost** por **Host=db** nos **appsettings** , os Postgres aceita o dialeto tanto a palavra **Server** como a palavra **Host** para distinguir o Servidor. 
+
+
+#### 💡 Tabelas Identity ASPNET da Microsoft 
 | Tecnologia | Descrição |
 |-----------|-----------|
 | **AspNetRoles** |  Armazena os papéis/perfis de acesso (ex: Admin, Usuário). |
@@ -125,6 +129,4 @@ DROP DATABASE "creativeTim";
 | **AspNetUserLogins** |  Usado para logins externos (como Google, Facebook, Microsoft). |
 | **AspNetUserTokens** |  Armazena tokens de autenticação do usuário. |
 
-**Observação:** Para Utilizar o **Postgres** direto no **Docker** alterar nos **appsettings**.
-- Após configurado o banco de dados, deve se trocar **Server=localhost** por **Host=db** nos **appsettings** , os Postgres aceita o dialeto tanto a palavra **Server** como a palavra **Host** para distinguir o Servidor. 
 
