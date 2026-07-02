@@ -8,10 +8,7 @@ namespace CreativeTim.Argon.DotNetCore.Free.Data
         public ApplicationDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
-            
-            // ATENÇÃO: Mantenha aqui o provedor de banco original do seu template Argon (ex: UseSqlite, UseNpgsql ou UseSqlServer)
-            // Se o Argon veio configurado para PostgreSQL de fábrica:
-            optionsBuilder.UseNpgsql("Server=localhost;Port=5432;Database=creativeTim;User Id=postgres;Password=creativeTim");
+            optionsBuilder.UseNpgsql("Server=localhost;Port=5432;Database=creativeTim;User Id=postgres;Password=[SUA_SENHA]");
 
             return new ApplicationDbContext(optionsBuilder.Options);
         }
