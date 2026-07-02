@@ -5,31 +5,9 @@ Exemplo de renderização CreativeTim em C# ASP.NET Core 10 com banco de dados P
 | Tecnologia | Descrição |
 |-----------|-----------|
 | **Identity** | Serviços de autenticação, autorização e gerenciamento de acessos,  garantindo que apenas as pessoas e entidades autorizadas acessem recursos e dados |
- 
-VSCode Terminal [1]
-```bash
-cd CreativeTim.Argon.DotNetCore.Free
-dotnet restore
-dotnet build
-dotnet ef migrations add InitialCreate
-docker-compose up --build  
-```
-
-VSCode Terminal [2]
-```bash
-cd CreativeTim.Argon.DotNetCore.Free
-dotnet ef database update 
-```
-
-VSCode Terminal [3]
-- Fechar Container
-```bash
-docker-compose down 
-```
-
-A aplicação ficará disponivel em **https://localhost:44308/**
 
 #### 💬 Requisitos do Projeto
+
 - 1. Garante que a pasta existe no seu Windows
 ```bash
 mkdir -Force "$env:USERPROFILE\.aspnet\https"
@@ -47,41 +25,96 @@ dotnet dev-certs https --trust
 dotnet dev-certs https -ep "$env:USERPROFILE\.aspnet\https\argonapp.pfx" -p "CrypticPassword99!"
 ```
 
+#### ⚠️ String de conexão do banco 
+Alterar em todos arquivos **YML** e **appsettings** o campo **[SUA_SENHA]** colocar sua senha localhost do Postgres.
 
+```bash
+ "PostgresConnection": "Host=localhost;Port=5432;Database=creativeTim;User Id=postgres;Password=[SUA_SENHA]"
+```
+Nos arquivos **YML** e Conexões  
+```bash
+POSTGRES_PASSWORD: '[SUA_SENHA]'
+```
+```bash
+ CONNECTIONSTRINGS__POSTGRESCONNECTION=Server=db;Port=5432;Database=creativeTim;User Id=postgres;Password=[SUA_SENHA]
+```
+
+#### 🔄 Executar a aplicação
+VSCode Terminal [1]
+```bash
+cd CreativeTim.Argon.DotNetCore.Free
+dotnet restore
+dotnet build
+dotnet ef migrations add InitialCreate
+docker-compose up --build  
+```
+
+VSCode Terminal [2]
+- Necessário verificar se em Serviços o Postgres está iniciado. 
+```bash
+cd CreativeTim.Argon.DotNetCore.Free
+dotnet ef database update 
+```
+
+VSCode Terminal [3]
+- Fechar Container
+```bash
+docker-compose down 
+```
+
+A aplicação ficará disponivel em **https://localhost:44308/**
+
+#### ⚙️ Configuração - Postgres Docker 
+
+Para verificar se a database **creativeTim** está no docker acesse o banco com os commandos, para verificar as tabelas. 
+
+VSCode Terminal [4]
+```bash 
 docker exec -it argon-dashboard-asp-net-master-db-1 psql -U postgres
-
-
 \l
-
 \c creativeTim
-
 \dt
+```
+-Caso houver falhas de Erro nos comandos Digite **;** e aperte **Enter**.
+-Se você já digitou texto errado na linha anterior, use o atalho **Ctrl + C** para cancelar o comando atual e limpar a linha. Digite o comando completo novamente em uma única linha e finalize com **;**
 
-
-Digite ; e aperte Enter.
-Se você já digitou texto errado na linha anterior, use o atalho Ctrl + C para cancelar o comando atual e limpar a linha.
-Digite o comando completo novamente em uma única linha e finalize com ;:
-
-
-
+- Os Select(s) das tabelas do **Identity Microsoft** podem ser usados no terminal 
+```bash 
 	SELECT * FROM "AspNetRoles";
 	SELECT * FROM "AspNetUsers";
 	SELECT * FROM "AspNetUserRoles";
-
 	SELECT * FROM "AspNetRoleClaims";
 	SELECT * FROM "AspNetUserClaims";
 	SELECT * FROM "AspNetUserLogins";
 	SELECT * FROM "AspNetUserTokens";
 	SELECT * FROM "DataProtectionKeys";
-
+```
+- Verificar o Health do banco
+ ```bash  
 docker inspect --format='{{json .State.Health}}' argon-dashboard-asp-net-master-db-1
-
+```
+- Verificar **TCP/IP** da aplicação 
+```bash  
 docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' argon-dashboard-asp-net-master-db-1
+```
+- Caso precise Recriar o banco de dados
+- ```bash  
+SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = 'creativeTim'
+;
+DROP DATABASE "creativeTim";
+```bash
 
-AspNetRoles: Armazena os papéis/perfis de acesso (ex: Admin, Usuário).
-AspNetUsers: Armazena os dados dos usuários cadastrados.
-AspNetUserRoles: Tabela de associação (muitos-para-muitos) que vincula quais usuários possuem quais papéis.
-AspNetRoleClaims: Permissões ou reivindicações específicas atreladas a um papel.
-AspNetUserClaims: Permissões específicas atribuídas diretamente a um usuário.
-AspNetUserLogins: Usado para logins externos (como Google, Facebook, Microsoft).
-AspNetUserTokens: Armazena tokens de autenticação do usuário.
+#### Identity Microsoft ASPNET  
+
+| Tecnologia | Descrição |
+|-----------|-----------|
+| **AspNetRoles** |  Armazena os papéis/perfis de acesso (ex: Admin, Usuário). |
+| **AspNetUsers** |  Armazena os dados dos usuários cadastrados. |
+| **AspNetUserRoles** |  Tabela de associação (muitos-para-muitos) que vincula quais usuários possuem quais papéis. |
+| **AspNetRoleClaims** |  Permissões ou reivindicações específicas atreladas a um papel. |
+| **AspNetUserClaims** |  Permissões específicas atribuídas diretamente a um usuário. |
+| **AspNetUserLogins** |  Usado para logins externos (como Google, Facebook, Microsoft). |
+| **AspNetUserTokens** |  Armazena tokens de autenticação do usuário. |
+
+**Observação:** Para Utilizar o **Postgres** direto no **Docker** alterar nos **appsettings** após configurado o banco de dados, deve se trocar **Server=localhost** por **Host=db** , os Postgres aceita no dialeto tanto a palavra Server como Host para apontar o servidor. 
+
