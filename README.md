@@ -84,8 +84,8 @@ docker exec -it argon-dashboard-asp-net-master-db-1 psql -U postgres
 \c creativeTim
 \dt
 ```
-- Caso houver falhas de Erro nos comandos Digite ** ; ** e aperte **Enter**.
-- Se você já digitou texto errado na linha anterior, use o atalho **Ctrl + C** para cancelar o comando atual e limpar a linha. Digite o comando completo novamente em uma única linha e finalize com ** ; **
+- Caso houver falhas de Erro nos comandos Digite  ; ( ponto e virgula ) e aperte **Enter**.
+- Se você já digitou texto errado na linha anterior, use o atalho **Ctrl + C** para cancelar o comando atual e limpar a linha. Digite o comando completo novamente em uma única linha e finalize com  ; ( ponto e virgula )
 
 - Os Select(s) das tabelas do **Identity Microsoft** podem ser usados no terminal 
 ```bash 
