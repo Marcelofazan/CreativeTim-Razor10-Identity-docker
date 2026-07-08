@@ -1,4 +1,4 @@
-## 🌐 Argon-RazorPages10-Identity-docker
+## 🌐 Argon-RazorPages10-docker
 Exemplo de renderização Argon Dashboard em C# ASP.NET Core 10 com banco de dados Postgres.
 
 #### 🎨 Aqui está uma demonstração do projeto
