@@ -125,7 +125,7 @@ DROP DATABASE "creativeTim";
 | **AspNetUserTokens** |  Armazena tokens de autenticação do usuário. |
 
 
- #### ⚙️ Instalar Certificado válido **SSL/TLS
+ #### ⚙️ Certificado **SSL/TLS criar instalar 
 - Garante que a pasta existe no seu Windows
 ```bash
 mkdir -Force "$env:USERPROFILE\.aspnet\https"
