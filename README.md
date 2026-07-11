@@ -54,7 +54,7 @@ No arquivo **ApplicationDbContextFactory.cs**
 #### 🔄 Executar a aplicação Docker
 VSCode Terminal [1]
 
-- Iniciar Container
+- Criar Container
 ```bash
 docker-compose up --build
 ```
@@ -66,7 +66,7 @@ docker compose down
 ```
 
 #### 🔄 Executar a aplicação Desenvolvimento Local
-VSCode Terminal [1]
+VSCode Terminal [1.1]
 - Necessário verificar se em Serviços o Postgres está iniciado.
 ```bash
 cd CreativeTim.Argon.DotNetCore.Free
