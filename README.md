@@ -13,6 +13,7 @@ Exemplo de renderização Argon Dashboard TLS/SSL em C# ASP.NET Core 10 EF com b
 
 #### 💬 Requisitos do Projeto
 - Necessário **Docker** instalado.
+- Realizar Migrations EntityFramework .NET
 - Necessário Certificados em pasta raiz.
 
 #### ⚠️ String de conexão do banco 
