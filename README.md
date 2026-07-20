@@ -1,4 +1,4 @@
-## 🌐 Argon-RazorPages10-docker
+## 🌐 Argon-RazorPages-docker
 Exemplo de renderização Argon Dashboard TLS/SSL em C# ASP.NET Core 10 EF com banco de dados Postgres.
 
 #### 🎨 Aqui está uma demonstração do projeto
